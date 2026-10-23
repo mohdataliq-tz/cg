@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chef Portal — Calendar Sync</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2933;
+      padding: 32px 16px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8ee;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 28px rgba(20, 35, 50, .06);
+    }
+    .eyebrow {
+      color: #4b6b5a;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 12px 0; }
+    .sub { color: #667085; line-height: 1.6; margin: 0 0 24px; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .panel { border: 1px solid #e5e9ee; border-radius: 12px; padding: 18px; }
+    .panel h2 { font-size: 16px; margin: 0 0 14px; }
+    .status { display: flex; gap: 10px; align-items: center; background: #edf8f1; color: #17663a; padding: 12px; border-radius: 10px; font-size: 14px; }
+    .dot { width: 9px; height: 9px; background: #22a05a; border-radius: 50%; }
+    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+    .day { text-align: center; font-size: 12px; color: #667085; padding: 7px 0; }
+    .date { min-height: 42px; padding: 8px 4px; border-radius: 7px; background: #f5f7fa; font-size: 12px; }
+    .event { margin-top: 5px; height: 5px; border-radius: 4px; background: #7da7e8; }
+    .event.green { background: #75c6a0; }
+    .event.gold { background: #e5bd77; }
+    .button {
+      display: inline-block; border: 0; border-radius: 9px; padding: 12px 16px;
+      background: #176b54; color: white; font-weight: 700; cursor: pointer;
+    }
+    .button:hover { background: #125541; }
+    .note { font-size: 12px; color: #667085; margin-top: 12px; line-height: 1.5; }
+    @media (max-width: 680px) {
+      .layout { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <div class="eyebrow">Chef Portal · Scheduling</div>
+      <h1>Google Calendar sync</h1>
+      <p class="sub">Keep your chef bookings and personal schedule in one place.</p>
+
+      <div class="layout">
+        <section class="panel">
+          <h2>Calendar preview · December 2026</h2>
+          <div class="calendar" aria-label="Sample December 2026 calendar">
+            <div class="day">Sun</div><div class="day">Mon</div><div class="day">Tue</div>
+            <div class="day">Wed</div><div class="day">Thu</div><div class="day">Fri</div><div class="day">Sat</div>
+            <div class="date">1</div><div class="date">2<div class="event"></div></div>
+            <div class="date">3</div><div class="date">4<div class="event green"></div></div>
+            <div class="date">5</div><div class="date">6<div class="event gold"></div></div>
+            <div class="date">7</div><div class="date">8</div><div class="date">9<div class="event"></div></div>
+            <div class="date">10</div><div class="date">11<div class="event green"></div></div>
+            <div class="date">12</div><div class="date">13</div><div class="date">14<div class="event gold"></div></div>
+            <div class="date">15</div><div class="date">16</div><div class="date">17<div class="event"></div></div>
+            <div class="date">18</div><div class="date">19<div class="event green"></div></div>
+            <div class="date">20</div><div class="date">21</div><div class="date">22<div class="event gold"></div></div>
+            <div class="date">23</div><div class="date">24</div><div class="date">25<div class="event"></div></div>
+            <div class="date">26</div><div class="date">27<div class="event green"></div></div>
+            <div class="date">28</div><div class="date">29</div><div class="date">30<div class="event gold"></div></div>
+            <div class="date">31</div>
+          </div>
+          <p class="note">Demo preview only. Calendar events shown are placeholders.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Sync status</h2>
+          <div class="status"><span class="dot"></span><strong id="statusText">Calendar sync connected (demo)</strong></div>
+          <p class="sub" style="margin-top: 16px;">Your chef bookings can appear alongside your other calendar events.</p>
+          <button class="button" id="syncButton" type="button">Simulate sync</button>
+          <p class="note" id="syncNote">This is a dummy HTML prototype. It does not connect to Google Calendar or save any data.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script>
+    const button = document.getElementById('syncButton');
+    const statusText = document.getElementById('statusText');
+    const syncNote = document.getElementById('syncNote');
+    button.addEventListener('click', () => {
+      statusText.textContent = 'Demo sync complete';
+      syncNote.textContent = 'Sample status updated locally. No real calendar connection was made.';
+      button.textContent = 'Synced (demo)';
+      button.disabled = true;
+      button.style.opacity = '.7';
+      button.style.cursor = 'default';
+    });
+  </script>
+</body>
+</html>
